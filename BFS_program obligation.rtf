@@ -1,0 +1,343 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red47\green180\blue29;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c20241\c73898\c14950;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh16060\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 Last login: Tue Dec 16 11:33:50 on ttys000\
+zhang191@191-Mac ~ % cd /Users/zhang191/silicon                                                        \
+zhang191@191-Mac silicon % sbt assembly                                                                              \
+\
+[info] welcome to sbt 1.6.2 (Eclipse Adoptium Java 17.0.14)\
+[info] loading settings for project silicon-build from plugins.sbt ...\
+[info] loading project definition from /Users/zhang191/silicon/project\
+[info] loading settings for project silicon from build.sbt ...\
+[info] loading settings for project silver from build.sbt ...\
+[info] set current project to Silicon (in build file:/Users/zhang191/silicon/)\
+[info] Strategy 'discard' was applied to 23 files (Run the task at debug level to see details)\
+[info] Strategy 'discard' was applied to 25 files (Run the task at debug level to see details)\
+[info] Strategy 'rename' was applied to a file (Run the task at debug level to see details)\
+[info] Assembly up to date: /Users/zhang191/silicon/common/target/scala-2.13/common-assembly-0.1.0-SNAPSHOT.jar\
+[info] Assembly up to date: /Users/zhang191/silicon/target/scala-2.13/silicon.jar\
+[\cf3 success\cf2 ] Total time: 2 s, completed 23 Dec 2025, 12:31:26 pm\
+zhang191@191-Mac silicon % ./silicon.sh /Users/zhang191/ANU/COMP8800/Viper/BFS_Snapshot.vpr --enableDebugging\
+Silicon 1.1-SNAPSHOT (95328487)\
+[0]: Assertion (forall n: Ref :: \{ (n in r) \} \{ @reveal() (reachable(toInt(root), toInt(n), abstract(nodes, root))) \} (n in r) == @reveal() (reachable(toInt(root), toInt(n), abstract(nodes, root)))) might not hold. (BFS_Snapshot.vpr@186.12--186.104)\
+\
+\
+Verification result 0:\
+Current obligation:\
+\
+Original Error: \
+		BFS_Snapshot.vpr@186.12--186.104 (inside reach)\
+		Assertion (forall n: Ref :: \{ (n in r) \} \{ @reveal() (reachable(toInt(root), toInt(n), abstract(nodes, root))) \} (n in r) == @reveal() (reachable(toInt(root), toInt(n), abstract(nodes, root)))) might not hold.\
+\
+Branch Conditions:\
+		|q@16| <= 0\
+\
+Store:\
+		nodes -> nodes@3\
+		root -> root@4\
+		r -> visited@20\
+		visited -> visited@20\
+		q -> q@16\
+		p0 -> p0@14\
+		a -> a@15\
+		neighbors -> neighbors@17\
+		neighbors_len -> neighbors_len@18\
+		i -> i@19\
+\
+Heap:\
+		acc(graph(List(nodes@3, root@4)), 1 / 2)\
+\
+Assumptions: \
+	[1704] |q@16| <= 0\
+	[1721] Nested auxiliary terms: globals (aux)\
+	[1722] Nested auxiliary terms: non-globals (aux)\
+		[1720] forall n@127 :: \
+			[1710] Joined path conditions[...]\
+			[1713] Joined path conditions[...]\
+			[1716] Joined path conditions[...]\
+	[1723] (forall n@127: Ref ::(n@127 in visited@20) == @reveal() (reachable(toInt(root@4), toInt(n@127), old[debug@15#l:186.82](abstract(nodes@3, root@4)))))\
+	[1746] Nested auxiliary terms: non-globals (aux)\
+		[1744] forall n@128 :: \
+			[1734] Joined path conditions[...]\
+			[1740] Joined path conditions[...]\
+	[1747] (forall n@128: Ref ::(n@128 in visited@20) == @reveal() (reachable(toInt(root@4), toInt(n@128), old[debug@16#l:186.82](abstract(nodes@3, root@4)))))\
+	[1770] Nested auxiliary terms: non-globals (aux)\
+		[1768] forall n@129 :: \
+			[1758] Joined path conditions[...]\
+			[1764] Joined path conditions[...]\
+	[1771] (forall n@129: Ref ::(n@129 in visited@20) == @reveal() (reachable(toInt(root@4), toInt(n@129), old[debug@17#l:186.82](abstract(nodes@3, root@4)))))\
+	[1794] Nested auxiliary terms: non-globals (aux)\
+		[1792] forall n@130 :: \
+			[1782] Joined path conditions[...]\
+			[1788] Joined path conditions[...]\
+	[1795] (forall n@130: Ref ::(n@130 in visited@20) == @reveal() (reachable(toInt(root@4), toInt(n@130), old[debug@18#l:186.82](abstract(nodes@3, root@4)))))\
+	[558] Loop invariant\
+		[315] Nested auxiliary terms: non-globals (aux)\
+			[313] forall n@22 :: [...]\
+		[316] (forall n@22: Ref ::(n@22 in visited@20) ==> (n@22 in nodes@3))\
+		[337] Nested auxiliary terms: non-globals (aux)\
+			[335] forall k@23 :: [...]\
+		[338] (forall k@23: Int ::k@23 >= 0 && k@23 < |q@16| ==> (q@16[k@23] in visited@20))\
+		[365] Nested auxiliary terms: non-globals (aux)\
+			[363] forall n@24 :: [...]\
+		[...]\
+	[444] Nested auxiliary terms: non-globals (aux)\
+		[442] forall n@28 :: \
+			[439] Feasible Branches: !((n@28 in visited@12)) || (n@28 in visited@12)\
+	[446] (forall n@28: Ref ::(n@28 in visited@12) ==> (n@28 in nodes@3))\
+	[465] Nested auxiliary terms: non-globals (aux)\
+		[463] forall k@29 :: \
+			[454] Feasible Branches: k@29 >= 0 || k@29 < 0\
+			[461] Feasible Branches: !(k@29 >= 0 && k@29 < |q@13|) || k@29 >= 0 && k@29 < |q@13|\
+	[467] (forall k@29: Int ::k@29 >= 0 && k@29 < |q@13| ==> (q@13[k@29] in visited@12))\
+	[492] Nested auxiliary terms: non-globals (aux)\
+		[490] forall n@30 :: \
+			[484] Joined path conditions[...]\
+			[487] Feasible Branches: !((n@30 in visited@12)) || (n@30 in visited@12)\
+	[493] (forall n@30: Ref ::(n@30 in visited@12) ==> reachable(toInt(root@4), toInt(n@30), old[debug@1#l:115.86](abstract(nodes@3, root@4))))\
+	[494] (forall n@30: Ref ::(n@30 in visited@12) ==> reachable(toInt(root@4), toInt(n@30), old[debug@1#l:115.86](abstract(nodes@3, root@4))))\
+	[554] Nested auxiliary terms: non-globals (aux)\
+		[552] forall n@31, c@32 :: \
+			[510] Joined path conditions[...]\
+			[511] Feasible Branches: (n@31 in visited@12) || !((n@31 in visited@12))\
+			[542] Joined path conditions[...]\
+			[545] Feasible Branches: !((n@31 in visited@12) && ((P(toInt(n@31), toInt(c@32)): Pair[Int]) in arcs(old[debug@1#l:116.90](abstract(nodes@3, root@4))))) || (n@31 in visited@12) && ((P(toInt(n@31), toInt(c@32)): Pair[Int]) in arcs(old[debug@1#l:116.90](abstract(nodes@3, root@4))))\
+	[555] (forall n@31: Ref, c@32: Ref ::(n@31 in visited@12) && ((P(toInt(n@31), toInt(c@32)): Pair[Int]) in arcs(old[debug@1#l:116.90](abstract(nodes@3, root@4)))) ==> (c@32 in visited@12) || (exists j@33: Int :: j@33 >= 0 && (j@33 < |q@13| && q@13[j@33] == n@31)))\
+	[556] (forall n@31: Ref, c@32: Ref ::(n@31 in visited@12) && ((P(toInt(n@31), toInt(c@32)): Pair[Int]) in arcs(old[debug@1#l:116.90](abstract(nodes@3, root@4)))) ==> (c@32 in visited@12) || (exists j@33: Int :: j@33 >= 0 && (j@33 < |q@13| && q@13[j@33] == n@31)))\
+	[557] (root@4 in visited@12)\
+	[267] visited@12 == Set(root@4)\
+	[268] |Seq(root@4)| == 1\
+	[269] q@13 == Seq(root@4)\
+	[270] p0@14 == Empty()\
+	[271] Path_tag(p0@14) == 0\
+	[273] Joined path conditions\
+		[272] precondition of toInt(root@4) holds\
+	[279] Joined path conditions\
+		[278] precondition of abstract(nodes@3, root@4) holds\
+	[282] Joined path conditions\
+		[281] precondition of valid_path(p0@14, toInt(root@4), toInt(root@4), old[debug@1#l:107.53](abstract(nodes@3, root@4))) holds\
+	[284] valid_path(p0@14, toInt(root@4), toInt(root@4), old[debug@1#l:107.53](abstract(nodes@3, root@4)))\
+	[295] Joined path conditions\
+		[294] precondition of reachable(toInt(root@4), toInt(root@4), old[debug@1#l:108.58](abstract(nodes@3, root@4))) holds\
+	[297] @reveal() (reachable(toInt(root@4), toInt(root@4), old[debug@1#l:108.58](abstract(nodes@3, root@4))))\
+\
+Assertion:\
+	\
+	[1796] (forall n@130: Ref ::(n@130 in visited@20) == @reveal() (reachable(toInt(root@4), toInt(n@130), old[debug@18#l:186.82](abstract(nodes@3, root@4)))))\
+\
+\
+Initializing prover...\
+\
+Enter 'q' to quit, 'z' to zoom in on (i.e., show all children of) an assumption, 'r' to reset the proof obligation, 'ra' to remove assumptions, 'af' to add free assumptions, 'ap' prove additional assumptions, 'p' to execute proof, 'c' to change print configuration, 's' to change the SMT solver, 't' to change the timeout\
+c\
+Current configuration: isPrintInternalEnabled = false\
+nChildrenToShow      = 5\
+printHierarchyLevel  = 2\
+hierarchy per id     = Map()\
+isPrintAxiomsEnabled = false\
+\
+Enter the new value for isPrintInternalEnabled:\
+True\
+Enter the new value for nChildrenToShow:\
+20\
+Enter the new value for printHierarchyLevel:\
+10\
+Enter the new value for isPrintAxiomsEnabled:\
+false\
+Enter the new value for printInternalTermRepresentation:\
+true\
+Current obligation:\
+\
+Original Error: \
+		BFS_Snapshot.vpr@186.12--186.104 (inside reach)\
+		Assertion (forall n: Ref :: \{ (n in r) \} \{ @reveal() (reachable(toInt(root), toInt(n), abstract(nodes, root))) \} (n in r) == @reveal() (reachable(toInt(root), toInt(n), abstract(nodes, root)))) might not hold.\
+\
+Branch Conditions:\
+		!(|q@16@10| > 0)\
+\
+Store:\
+		nodes -> nodes@3@10\
+		root -> root@4@10\
+		r -> visited@20@10\
+		visited -> visited@20@10\
+		q -> q@16@10\
+		p0 -> p0@14@10\
+		a -> a@15@10\
+		neighbors -> neighbors@17@10\
+		neighbors_len -> neighbors_len@18@10\
+		i -> i@19@10\
+\
+Heap:\
+		graph(First:($t@21@10); nodes@3@10,root@4@10) # 1/2\
+\
+Assumptions: \
+	[1704] !(|q@16@10| > 0)\
+	[1721] Nested auxiliary terms: globals (aux): abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+	[1722] Nested auxiliary terms: non-globals (aux): QA n@127@10 :: toInt%precondition(_, n@127@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@127@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@127@10 :: toInt%precondition(_, n@127@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@127@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+		[1720] forall n@127 :: \
+			[1710] Joined path conditions: toInt%precondition(_, n@127@10)\
+				[1709] precondition of toInt(n@127) holds: toInt%precondition(_, n@127@10)\
+			[1713] Joined path conditions: abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+				[1712] precondition of abstract(nodes@3, root@4) holds: abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+			[1716] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@127@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+				[1715] precondition of reachable(toInt(root@4), toInt(n@127), old[debug@15#l:186.82](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@127@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1723] QA n@127@10 :: toInt%precondition(_, root@4@10) && toInt%precondition(_, n@127@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@127@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1746] Nested auxiliary terms: non-globals (aux): QA n@128@10 :: toInt%precondition(_, n@128@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@128@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@128@10 :: toInt%precondition(_, n@128@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@128@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+		[1744] forall n@128 :: \
+			[1734] Joined path conditions: toInt%precondition(_, n@128@10)\
+				[1733] precondition of toInt(n@128) holds: toInt%precondition(_, n@128@10)\
+			[1740] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@128@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+				[1739] precondition of reachable(toInt(root@4), toInt(n@128), old[debug@16#l:186.82](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@128@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1747] QA n@128@10 :: toInt%precondition(_, root@4@10) && toInt%precondition(_, n@128@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@128@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1770] Nested auxiliary terms: non-globals (aux): QA n@129@10 :: toInt%precondition(_, n@129@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@129@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@129@10 :: toInt%precondition(_, n@129@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@129@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+		[1768] forall n@129 :: \
+			[1758] Joined path conditions: toInt%precondition(_, n@129@10)\
+				[1757] precondition of toInt(n@129) holds: toInt%precondition(_, n@129@10)\
+			[1764] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@129@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+				[1763] precondition of reachable(toInt(root@4), toInt(n@129), old[debug@17#l:186.82](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@129@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1771] QA n@129@10 :: toInt%precondition(_, root@4@10) && toInt%precondition(_, n@129@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@129@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1794] Nested auxiliary terms: non-globals (aux): QA n@130@10 :: toInt%precondition(_, n@130@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@130@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@130@10 :: toInt%precondition(_, n@130@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@130@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+		[1792] forall n@130 :: \
+			[1782] Joined path conditions: toInt%precondition(_, n@130@10)\
+				[1781] precondition of toInt(n@130) holds: toInt%precondition(_, n@130@10)\
+			[1788] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@130@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+				[1787] precondition of reachable(toInt(root@4), toInt(n@130), old[debug@18#l:186.82](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@130@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[1795] QA n@130@10 :: toInt%precondition(_, root@4@10) && toInt%precondition(_, n@130@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@130@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+	[558] Loop invariant: $t@21@10 == (First:($t@21@10), Second:($t@21@10)) && Second:($t@21@10) == (First:(Second:($t@21@10)), Second:(Second:($t@21@10))) && First:(Second:($t@21@10)) == _ && QA n@22@10 :: !(n@22@10 in visited@20@10) || n@22@10 in visited@20@10 && QA n@22@10 :: !(n@22@10 in visited@20@10) || n@22@10 in visited@20@10 && QA n@22@10 :: n@22@10 in visited@20@10 ==> n@22@10 in nodes@3@10 && Second:(Second:($t@21@10)) == (First:(Second:(Second:($t@21@10))), Second:(Second:(Second:($t@21@10)))) && First:(Second:(Second:($t@21@10))) == _ && QA k@23@10 :: k@23@10 >= 0 || !(k@23@10 >= 0) && !(k@23@10 >= 0 && k@23@10 < |q@16@10|) || k@23@10 >= 0 && k@23@10 < |q@16@10| && QA k@23@10 :: k@23@10 >= 0 && k@23@10 < |q@16@10| ==> q@16@10[k@23@10] in visited@20@10 && Second:(Second:(Second:($t@21@10))) == (First:(Second:(Second:(Second:($t@21@10)))), Second:(Second:(Second:(Second:($t@21@10))))) && First:(Second:(Second:(Second:($t@21@10)))) == _ && QA n@24@10 :: n@24@10 in visited@20@10 ==> n@24@10 in visited@20@10 && toInt%precondition(_, n@24@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(n@24@10 in visited@20@10) || n@24@10 in visited@20@10 && QA n@24@10 :: n@24@10 in visited@20@10 ==> n@24@10 in visited@20@10 && toInt%precondition(_, n@24@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(n@24@10 in visited@20@10) || n@24@10 in visited@20@10 && QA n@24@10 :: n@24@10 in visited@20@10 ==> reachable%limited(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && Second:(Second:(Second:(Second:($t@21@10)))) == (First:(Second:(Second:(Second:(Second:($t@21@10))))), Second:(Second:(Second:(Second:(Second:($t@21@10)))))) && First:(Second:(Second:(Second:(Second:($t@21@10))))) == _ && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> c@26@10 in visited@20@10 || QE j@27@10 :: j@27@10 >= 0 && j@27@10 < |q@16@10| && q@16@10[j@27@10] == n@25@10 && Second:(Second:(Second:(Second:(Second:($t@21@10))))) == _ && root@4@10 in visited@20@10\
+		[298] Snapshot: $t@21@10 == (First:($t@21@10), Second:($t@21@10))\
+		[301] Snapshot: Second:($t@21@10) == (First:(Second:($t@21@10)), Second:(Second:($t@21@10)))\
+		[302] Empty snapshot: First:(Second:($t@21@10)) == _\
+		[315] Nested auxiliary terms: non-globals (aux): QA n@22@10 :: !(n@22@10 in visited@20@10) || n@22@10 in visited@20@10 && QA n@22@10 :: !(n@22@10 in visited@20@10) || n@22@10 in visited@20@10\
+			[313] forall n@22 :: \
+				[310] Feasible Branches: !(n@22@10 in visited@20@10) || n@22@10 in visited@20@10\
+		[316] QA n@22@10 :: n@22@10 in visited@20@10 ==> n@22@10 in nodes@3@10\
+		[317] Snapshot: Second:(Second:($t@21@10)) == (First:(Second:(Second:($t@21@10))), Second:(Second:(Second:($t@21@10))))\
+		[318] Empty snapshot: First:(Second:(Second:($t@21@10))) == _\
+		[337] Nested auxiliary terms: non-globals (aux): QA k@23@10 :: k@23@10 >= 0 || !(k@23@10 >= 0) && !(k@23@10 >= 0 && k@23@10 < |q@16@10|) || k@23@10 >= 0 && k@23@10 < |q@16@10|\
+			[335] forall k@23 :: \
+				[326] Feasible Branches: k@23@10 >= 0 || !(k@23@10 >= 0)\
+				[333] Feasible Branches: !(k@23@10 >= 0 && k@23@10 < |q@16@10|) || k@23@10 >= 0 && k@23@10 < |q@16@10|\
+		[338] QA k@23@10 :: k@23@10 >= 0 && k@23@10 < |q@16@10| ==> q@16@10[k@23@10] in visited@20@10\
+		[339] Snapshot: Second:(Second:(Second:($t@21@10))) == (First:(Second:(Second:(Second:($t@21@10)))), Second:(Second:(Second:(Second:($t@21@10)))))\
+		[340] Empty snapshot: First:(Second:(Second:(Second:($t@21@10)))) == _\
+		[365] Nested auxiliary terms: non-globals (aux): QA n@24@10 :: n@24@10 in visited@20@10 ==> n@24@10 in visited@20@10 && toInt%precondition(_, n@24@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(n@24@10 in visited@20@10) || n@24@10 in visited@20@10 && QA n@24@10 :: n@24@10 in visited@20@10 ==> n@24@10 in visited@20@10 && toInt%precondition(_, n@24@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(n@24@10 in visited@20@10) || n@24@10 in visited@20@10\
+			[363] forall n@24 :: \
+				[357] Joined path conditions: n@24@10 in visited@20@10 ==> n@24@10 in visited@20@10 && toInt%precondition(_, n@24@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+					[356] n@24@10 in visited@20@10 ==> \
+						[342] n@24@10 in visited@20@10\
+						[347] Joined path conditions: toInt%precondition(_, n@24@10)\
+							[346] precondition of toInt(n@24) holds: toInt%precondition(_, n@24@10)\
+						[350] Joined path conditions: abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+							[349] precondition of abstract(nodes@3, root@4) holds: abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+						[353] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+							[352] precondition of reachable(toInt(root@4), toInt(n@24), old[debug@2#l:115.86](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+				[360] Feasible Branches: !(n@24@10 in visited@20@10) || n@24@10 in visited@20@10\
+		[366] QA n@24@10 :: n@24@10 in visited@20@10 ==> reachable%limited(_, toInt(_, root@4@10), toInt(_, n@24@10), abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+		[367] Snapshot: Second:(Second:(Second:(Second:($t@21@10)))) == (First:(Second:(Second:(Second:(Second:($t@21@10))))), Second:(Second:(Second:(Second:(Second:($t@21@10))))))\
+		[368] Empty snapshot: First:(Second:(Second:(Second:(Second:($t@21@10))))) == _\
+		[428] Nested auxiliary terms: non-globals (aux): QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10) && n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10) && n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10 && !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+			[426] forall n@25, c@26 :: \
+				[384] Joined path conditions: n@25@10 in visited@20@10 ==> n@25@10 in visited@20@10 && toInt%precondition(_, n@25@10) && toInt%precondition(_, c@26@10) && abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+					[383] n@25@10 in visited@20@10 ==> \
+						[371] n@25@10 in visited@20@10\
+						[373] Joined path conditions: toInt%precondition(_, n@25@10)\
+							[372] precondition of toInt(n@25) holds: toInt%precondition(_, n@25@10)\
+						[376] Joined path conditions: toInt%precondition(_, c@26@10)\
+							[375] precondition of toInt(c@26) holds: toInt%precondition(_, c@26@10)\
+						[379] Joined path conditions: abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+							[378] precondition of abstract(nodes@3, root@4) holds: abstract%precondition(First:($t@21@10), nodes@3@10, root@4@10)\
+				[385] Feasible Branches: n@25@10 in visited@20@10 || !(n@25@10 in visited@20@10)\
+				[416] Joined path conditions: n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) && !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0) && !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10\
+					[415] n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> \
+						[386] n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+						[412] Joined path conditions: !(c@26@10 in visited@20@10) ==> !(c@26@10 in visited@20@10) && QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0)\
+							[411] !(c@26@10 in visited@20@10) ==> \
+								[388] !(c@26@10 in visited@20@10)\
+								[407] Nested auxiliary terms: non-globals (aux): QE j@27@10 :: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|) && j@27@10 >= 0 || !(j@27@10 >= 0)\
+									[405] exists j@27 :: \
+										[402] Joined path conditions: j@27@10 >= 0 ==> j@27@10 >= 0 && j@27@10 < |q@16@10| || !(j@27@10 < |q@16@10|)\
+											[401] j@27@10 >= 0 ==> [...]\
+										[403] Feasible Branches: j@27@10 >= 0 || !(j@27@10 >= 0)\
+						[413] Feasible Branches: !(c@26@10 in visited@20@10) || c@26@10 in visited@20@10\
+				[419] Feasible Branches: !(n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))) || n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10))\
+		[429] QA n@25@10,c@26@10 :: n@25@10 in visited@20@10 && P[Pair[Int]](toInt(_, n@25@10), toInt(_, c@26@10)) in arcs[Set[Pair[Int]]](abstract(First:($t@21@10), nodes@3@10, root@4@10)) ==> c@26@10 in visited@20@10 || QE j@27@10 :: j@27@10 >= 0 && j@27@10 < |q@16@10| && q@16@10[j@27@10] == n@25@10\
+		[430] Empty snapshot: Second:(Second:(Second:(Second:(Second:($t@21@10))))) == _\
+		[431] root@4@10 in visited@20@10\
+	[444] Nested auxiliary terms: non-globals (aux): QA n@28@10 :: !(n@28@10 in visited@12@10) || n@28@10 in visited@12@10 && QA n@28@10 :: !(n@28@10 in visited@12@10) || n@28@10 in visited@12@10\
+		[442] forall n@28 :: \
+			[439] Feasible Branches: !(n@28@10 in visited@12@10) || n@28@10 in visited@12@10\
+	[446] QA n@28@10 :: n@28@10 in visited@12@10 ==> n@28@10 in nodes@3@10\
+	[465] Nested auxiliary terms: non-globals (aux): QA k@29@10 :: k@29@10 >= 0 || !(k@29@10 >= 0) && !(k@29@10 >= 0 && k@29@10 < |q@13@10|) || k@29@10 >= 0 && k@29@10 < |q@13@10|\
+		[463] forall k@29 :: \
+			[454] Feasible Branches: k@29@10 >= 0 || !(k@29@10 >= 0)\
+			[461] Feasible Branches: !(k@29@10 >= 0 && k@29@10 < |q@13@10|) || k@29@10 >= 0 && k@29@10 < |q@13@10|\
+	[467] QA k@29@10 :: k@29@10 >= 0 && k@29@10 < |q@13@10| ==> q@13@10[k@29@10] in visited@12@10\
+	[492] Nested auxiliary terms: non-globals (aux): QA n@30@10 :: n@30@10 in visited@12@10 ==> n@30@10 in visited@12@10 && toInt%precondition(_, n@30@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10)) && !(n@30@10 in visited@12@10) || n@30@10 in visited@12@10 && QA n@30@10 :: n@30@10 in visited@12@10 ==> n@30@10 in visited@12@10 && toInt%precondition(_, n@30@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10)) && !(n@30@10 in visited@12@10) || n@30@10 in visited@12@10\
+		[490] forall n@30 :: \
+			[484] Joined path conditions: n@30@10 in visited@12@10 ==> n@30@10 in visited@12@10 && toInt%precondition(_, n@30@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+				[483] n@30@10 in visited@12@10 ==> \
+					[469] n@30@10 in visited@12@10\
+					[474] Joined path conditions: toInt%precondition(_, n@30@10)\
+						[473] precondition of toInt(n@30) holds: toInt%precondition(_, n@30@10)\
+					[480] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+						[479] precondition of reachable(toInt(root@4), toInt(n@30), old[debug@1#l:115.86](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+			[487] Feasible Branches: !(n@30@10 in visited@12@10) || n@30@10 in visited@12@10\
+	[493] QA n@30@10 :: n@30@10 in visited@12@10 ==> toInt%precondition(_, root@4@10) && toInt%precondition(_, n@30@10) && abstract%precondition($t@6@10, nodes@3@10, root@4@10) && reachable%precondition(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+	[494] QA n@30@10 :: n@30@10 in visited@12@10 ==> reachable%limited(_, toInt(_, root@4@10), toInt(_, n@30@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+	[554] Nested auxiliary terms: non-globals (aux): QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10) && n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10 && !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10) && n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10 && !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10) && n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10 && !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10) && n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10 && !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10) && n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10 && !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10) && n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10 && !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))\
+		[552] forall n@31, c@32 :: \
+			[510] Joined path conditions: n@31@10 in visited@12@10 ==> n@31@10 in visited@12@10 && toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10)\
+				[509] n@31@10 in visited@12@10 ==> \
+					[497] n@31@10 in visited@12@10\
+					[499] Joined path conditions: toInt%precondition(_, n@31@10)\
+						[498] precondition of toInt(n@31) holds: toInt%precondition(_, n@31@10)\
+					[502] Joined path conditions: toInt%precondition(_, c@32@10)\
+						[501] precondition of toInt(c@32) holds: toInt%precondition(_, c@32@10)\
+			[511] Feasible Branches: n@31@10 in visited@12@10 || !(n@31@10 in visited@12@10)\
+			[542] Joined path conditions: n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) && !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0) && !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10\
+				[541] n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> \
+					[512] n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))\
+					[538] Joined path conditions: !(c@32@10 in visited@12@10) ==> !(c@32@10 in visited@12@10) && QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0)\
+						[537] !(c@32@10 in visited@12@10) ==> \
+							[514] !(c@32@10 in visited@12@10)\
+							[533] Nested auxiliary terms: non-globals (aux): QE j@33@10 :: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|) && j@33@10 >= 0 || !(j@33@10 >= 0)\
+								[531] exists j@33 :: \
+									[528] Joined path conditions: j@33@10 >= 0 ==> j@33@10 >= 0 && j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|)\
+										[527] j@33@10 >= 0 ==> \
+											[517] j@33@10 >= 0\
+											[524] Feasible Branches: j@33@10 < |q@13@10| || !(j@33@10 < |q@13@10|)\
+									[529] Feasible Branches: j@33@10 >= 0 || !(j@33@10 >= 0)\
+					[539] Feasible Branches: !(c@32@10 in visited@12@10) || c@32@10 in visited@12@10\
+			[545] Feasible Branches: !(n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))) || n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10))\
+	[555] QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 ==> toInt%precondition(_, n@31@10) && toInt%precondition(_, c@32@10) && abstract%precondition($t@6@10, nodes@3@10, root@4@10)\
+	[556] QA n@31@10,c@32@10 :: n@31@10 in visited@12@10 && P[Pair[Int]](toInt(_, n@31@10), toInt(_, c@32@10)) in arcs[Set[Pair[Int]]](abstract($t@6@10, nodes@3@10, root@4@10)) ==> c@32@10 in visited@12@10 || QE j@33@10 :: j@33@10 >= 0 && j@33@10 < |q@13@10| && q@13@10[j@33@10] == n@31@10\
+	[557] root@4@10 in visited@12@10\
+	[267] visited@12@10 == \{root@4@10\}\
+	[268] |[root@4@10]| == 1\
+	[269] q@13@10 == [root@4@10]\
+	[270] p0@14@10 == Empty[Path]\
+	[271] Path_tag[Int](p0@14@10) == 0\
+	[273] Joined path conditions: toInt%precondition(_, root@4@10)\
+		[272] precondition of toInt(root@4) holds: toInt%precondition(_, root@4@10)\
+	[279] Joined path conditions: abstract%precondition($t@6@10, nodes@3@10, root@4@10)\
+		[278] precondition of abstract(nodes@3, root@4) holds: abstract%precondition($t@6@10, nodes@3@10, root@4@10)\
+	[282] Joined path conditions: valid_path%precondition(_, p0@14@10, toInt(_, root@4@10), toInt(_, root@4@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+		[281] precondition of valid_path(p0@14, toInt(root@4), toInt(root@4), old[debug@1#l:107.53](abstract(nodes@3, root@4))) holds: valid_path%precondition(_, p0@14@10, toInt(_, root@4@10), toInt(_, root@4@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+	[284] valid_path(_, p0@14@10, toInt(_, root@4@10), toInt(_, root@4@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+	[295] Joined path conditions: reachable%precondition(_, toInt(_, root@4@10), toInt(_, root@4@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+		[294] precondition of reachable(toInt(root@4), toInt(root@4), old[debug@1#l:108.58](abstract(nodes@3, root@4))) holds: reachable%precondition(_, toInt(_, root@4@10), toInt(_, root@4@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+	[297] reachable(_, toInt(_, root@4@10), toInt(_, root@4@10), abstract($t@6@10, nodes@3@10, root@4@10))\
+\
+Assertion:\
+	\
+	[1796] (forall n@130: Ref ::(n@130 in visited@20) == @reveal() (reachable(toInt(root@4), toInt(n@130), old[debug@18#l:186.82](abstract(nodes@3, root@4)))))\
+\
+\
+\
+Enter 'q' to quit, 'z' to zoom in on (i.e., show all children of) an assumption, 'r' to reset the proof obligation, 'ra' to remove assumptions, 'af' to add free assumptions, 'ap' prove additional assumptions, 'p' to execute proof, 'c' to change print configuration, 's' to change the SMT solver, 't' to change the timeout\
+\
+}

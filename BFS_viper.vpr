@@ -1,0 +1,189 @@
+// Concrete graph
+
+field value: Int
+field nexts: Seq[Ref]
+
+predicate graph(nodes: Set[Ref], root: Ref)
+{
+    (forall n: Ref :: n in nodes ==> acc(n.value) && acc(n.nexts))
+    && root in nodes
+    && (forall n: Ref, x: Ref :: n in nodes && x in n.nexts ==> x in nodes)
+}
+
+define valid_index(i, s)
+    0 <= i < |s|
+
+// Abstract Graph
+
+adt Path {
+    Empty()
+    Step(tl: Path, hd: Int)
+}
+
+function valid_path(p: Path, from: Int, to: Int, g: Fin_digraph): Bool
+{
+    p.isEmpty ? from == to : (P(p.hd, to) in arcs(g) && valid_path(p.tl, from, p.hd, g))
+}
+
+@opaque()
+function reachable(from: Int, to: Int, g: Fin_digraph): Bool
+{
+    exists p: Path :: valid_path(p, from, to, g)
+}
+
+adt Pair[T] {
+    P(fst: T, snd: T)
+}
+
+domain Fin_digraph {
+    function verts(g: Fin_digraph): Set[Int]
+    function arcs(g: Fin_digraph): Set[Pair[Int]]
+    function head(g: Fin_digraph, e: Pair[Int]): Int
+    function tail(g: Fin_digraph, e: Pair[Int]): Int
+
+    axiom head_def {
+        forall g: Fin_digraph, e: Pair[Int] :: head(g, e) == e.fst
+    }
+
+    axiom tail_def {
+        forall g: Fin_digraph, e: Pair[Int] :: tail(g, e) == e.snd
+    }
+
+    axiom well_formed_head {
+        forall g: Fin_digraph, e: Pair[Int] :: e in arcs(g) ==> head(g, e) in verts(g)
+    }
+
+    axiom well_formed_tail {
+        forall g: Fin_digraph, e: Pair[Int] :: e in arcs(g) ==> tail(g, e) in verts(g)
+    }
+
+    axiom reach_step_axiom {
+        forall g: Fin_digraph, s: Int, a: Int, b: Int :: reachable(s, a, g) && P(a, b) in arcs(g) ==> reachable(s, b, g)
+    }
+
+    // axiom visited_closed_axiom{
+    //     forall g: Fin_digraph, visited: Set[Int], root: Int :: 
+    //         (forall a: Int, b: Int :: a in visited && P(a,b) in arcs(g) ==> b in visited) && root in visited ==>
+    //         (forall n: Int ::reachable(root, n, g) ==> n in visited)
+    // }
+
+}
+
+
+// Abstraction functions
+
+function toInt(r: Ref): Int
+    decreases *
+    ensures forall r1: Ref, r2: Ref :: (toInt(r1) == toInt(r2)) == (r1 == r2)
+
+function toIntSet(nodes: Set[Ref]): Set[Int]
+    ensures forall r: Ref :: r in nodes == toInt(r) in result
+    ensures forall n: Int :: n in result == (exists r: Ref :: r in nodes && n == toInt(r))
+    ensures |result| == |nodes|
+
+function abstract(nodes: Set[Ref], root: Ref): Fin_digraph
+    requires graph(nodes, root)
+    ensures forall n: Ref :: n in nodes == toInt(n) in verts(result)
+    ensures forall n: Int :: n in verts(result) == exists r: Ref :: toInt(r) == n
+    ensures unfolding graph(nodes, root) in forall n: Ref, x: Ref :: (n in nodes && x in n.nexts) 
+        == (P(toInt(n), toInt(x)) in arcs(result))
+
+
+// BFS reachability
+
+method reach(nodes: Set[Ref], root: Ref) returns (r: Set[Ref])
+    requires acc(graph(nodes, root), 1/2)
+    ensures acc(graph(nodes, root), 1/2)
+    ensures forall n: Ref :: n in r == reachable(toInt(root), toInt(n), abstract(nodes, root))
+{
+    var visited: Set[Ref] := Set(root)
+    var q: Seq[Ref] := Seq(root)
+
+    //assert (valid_index(10, q))
+
+    // Root
+    var p0: Path := Empty()
+    assert p0.isEmpty
+    assert valid_path(p0, toInt(root), toInt(root), abstract(nodes, root))
+    assert @reveal() reachable(toInt(root), toInt(root), abstract(nodes, root))
+
+    // BFS
+    while(|q| > 0)
+        invariant acc(graph(nodes, root), 1/2)
+        invariant forall n: Ref :: n in visited ==> n in nodes
+        invariant forall k: Int :: k >= 0 && k < |q| ==> q[k] in visited
+        invariant forall n: Ref :: n in visited ==> 
+        reachable(toInt(root), toInt(n), abstract(nodes, root))
+        invariant forall n: Ref, c: Ref :: n in visited && P(toInt(n), toInt(c)) in arcs(abstract(nodes, root)) ==> 
+        (c in visited || (exists j: Int :: j >= 0 && j < |q| && q[j] == n))
+        invariant root in visited
+        // invariant forall n: Ref :: reachable(toInt(root), toInt(n), abstract(nodes, root)) ==>
+        //     (n in visited || (exists j: Int :: j >= 0 && j < |q| 
+        //         && reachable(toInt(root), toInt(q[j]), abstract(nodes, root))
+        //         && reachable(toInt(q[j]), toInt(n), abstract(nodes, root))))
+
+    {
+        var a: Ref := q[0]
+        q := q[1..]
+
+        assert a in nodes
+        assert a in visited
+        assert forall n: Ref :: n in visited ==> reachable(toInt(root), toInt(n), abstract(nodes, root))
+        assert reachable(toInt(root), toInt(a), abstract(nodes, root))
+
+        unfold acc(graph(nodes, root), 1/4)
+        var neighbors: Seq[Ref] := a.nexts
+        var neighbors_len: Int := |neighbors|
+        var i: Int := 0
+
+        while (i < neighbors_len)
+            invariant acc(graph(nodes, root), 1/4)
+            invariant forall n: Ref :: n in visited ==> n in nodes
+            invariant forall k: Int :: k >= 0 && k < |q| ==> q[k] in visited
+            invariant forall n: Ref :: n in visited ==> reachable(toInt(root), toInt(n), abstract(nodes, root))
+            invariant acc(a.nexts, 1/4)
+            invariant neighbors == a.nexts
+            invariant a in visited
+            invariant neighbors_len == |neighbors|
+            invariant forall k: Int :: k >= 0 && k < neighbors_len ==> neighbors[k] in nodes
+            invariant i >= 0 && i <= neighbors_len
+            invariant forall n: Ref, c: Ref :: n in visited && n != a && P(toInt(n), toInt(c)) in arcs(abstract(nodes, root)) ==> 
+            (c in visited || (exists j: Int :: j >= 0 && j < |q| && q[j] == n))
+            invariant forall k: Int :: k >= 0 && k < i ==> neighbors[k] in visited
+            invariant root in visited
+        {
+            if (!(neighbors[i] in visited))
+            {
+                assert a in nodes
+                assert neighbors[i] in nodes
+                assert neighbors[i] in a.nexts
+                // Option A:
+                assert let g == (abstract(nodes, root)) in unfolding acc(graph(nodes, root), 1/4)
+                    in P(toInt(a), toInt(neighbors[i])) in arcs(g)
+                // Option B:
+                //assert unfolding acc(graph(nodes, root), 1/4) in true
+
+                // Original goal:
+                assert P(toInt(a), toInt(neighbors[i])) in arcs(abstract(nodes, root))
+                assert reachable(toInt(root), toInt(a), abstract(nodes, root))
+                assert reachable(toInt(root), toInt(neighbors[i]), abstract(nodes, root))
+
+                visited := visited union Set(neighbors[i])
+                q := q ++ Seq(neighbors[i])
+            }
+            i := i + 1
+        }
+        fold acc(graph(nodes, root), 1/4)
+    }
+
+    var visited_int: Set[Int] := toIntSet(visited)
+    assert forall n: Ref, c: Ref :: n in visited && P(toInt(n), toInt(c)) in arcs(abstract(nodes, root)) ==> c in visited
+    assert forall a: Int, b: Int :: a in visited_int && P(a,b) in arcs(abstract(nodes,root)) ==> b in visited_int
+    assert root in visited
+    assert toInt(root) in visited_int
+    // assert forall x: Int :: reachable(toInt(root), x, abstract(nodes,root)) ==> x in visited_int
+    // assert forall n: Ref :: reachable(toInt(root), toInt(n), abstract(nodes, root)) ==> n in visited
+
+    r := visited
+    // assert false
+}
